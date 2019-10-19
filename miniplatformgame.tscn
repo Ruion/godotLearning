@@ -1,301 +1,62 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/Idle0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/Jump3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/Jump4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/Run2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/jungleTileSet.tres" type="TileSet" id=13]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+extents = Vector2( 14, 28 )
 
 [node name="World2D" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 480, 320 )
+position = Vector2( 520, 288.266 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 200
+max_speed = 250
 jumpheight = -400
+acceleration = 50
 
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 1 )
+animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-visible = false
-shape = SubResource( 1 )
-
-[node name="Walls" type="Node" parent="."]
-editor/display_folded = true
-
-[node name="Wall" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 480, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
-visible = false
+position = Vector2( 0, 4 )
 shape = SubResource( 2 )
 
-[node name="Wall2" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 420, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall2"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall3" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 360, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall3"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall4" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 300, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall4"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall5" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 240, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall5"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall5"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall6" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 240, 320 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall6"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall6"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall7" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 180, 320 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall7"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall7"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall8" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 120, 320 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall8"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall8"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall9" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 480, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall9"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall9"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall10" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 540, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall10"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall10"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall11" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 600, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall11"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall11"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall12" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 660, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall12"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall12"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall13" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 720, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall13"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall13"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall14" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 780, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall14"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall14"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall15" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 840, 440 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall15"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall15"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall16" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 840, 380 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall16"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall16"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall17" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 940, 280 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall17"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall17"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Wall18" type="StaticBody2D" parent="Walls"]
-editor/display_folded = true
-position = Vector2( 780, 320 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Walls/Wall18"]
-modulate = Color( 0, 0, 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall18"]
-visible = false
-shape = SubResource( 2 )
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 720907, 0, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 2, 0, 786443, 3, 0, 786444, 4, 0, 786445, 4, 0, 786446, 4, 0, 786447, 4, 0, 786448, 4, 0, 786449, 4, 0, 786450, 4, 0, 786451, 4, 0, 786452, 5, 0, 851979, 6, 0, 851980, 7, 0, 851981, 7, 0, 851982, 7, 0, 851983, 7, 0, 851984, 7, 0, 851985, 7, 0, 851986, 7, 0, 851987, 7, 0, 851988, 8, 0 )
