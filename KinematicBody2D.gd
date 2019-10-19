@@ -38,7 +38,10 @@ func _physics_process(delta):
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
-		sprite.play("Jump")
+		if motion.y < 0:
+			sprite.play("Jump")
+		else:
+			sprite.play("Fall")
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.05)
 				
